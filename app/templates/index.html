@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Aritmética</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center">
+    <div class="container mx-auto p-8">
+        <div class="max-w-4xl mx-auto bg-gray-800 shadow-xl rounded-lg p-6 ring-4 ring-green-500">
+            <h1 class="text-3xl font-bold text-center text-green-300 mb-8">
+                Calculadora Aritmética
+            </h1>
+
+            <!-- Estructura de dos columnas -->
+            <div class="flex space-x-8">
+                <!-- Columna 1: Formulario -->
+                <div class="flex-1">
+                    <form method="POST" action="/" class="flex flex-col space-y-4">
+                        <input
+                            type="text"
+                            name="expresion"
+                            placeholder="Ejemplo: (3 + 4) * 5"
+                            value="{{ expresion }}"
+                            required
+                            class="p-3 border border-gray-700 bg-gray-900 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-green-300 placeholder-gray-500 text-white w-full"
+                        >
+                        <button
+                            type="submit"
+                            class="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 shadow-lg transition duration-300 ease-in-out transform hover:scale-105 w-full"
+                        >
+                            Calcular
+                        </button>
+                    </form>
+
+                    <!-- Resultado de la expresión -->
+            {% if resultado %}
+            <div class="mt-8 p-4 bg-green-900 border border-green-700 text-green-300 rounded-lg shadow-inner">
+                <strong>Resultado:</strong> {{ resultado }}
+            </div>
+        {% endif %}
+
+        <!-- Mensaje de error -->
+        {% if resultado == "Error en la expresión. Por favor, verifica la sintaxis." %}
+            <div class="mt-6 p-4 bg-red-900 border border-red-700 text-red-300 rounded-lg shadow-inner">
+                {{ resultado }}
+            </div>
+        {% endif %}
+                </div>
+
+                <!-- Columna 2: Árbol -->
+                <div class="flex-1">
+                    {% if imagen %}
+                        <h2 class="text-xl font-semibold text-gray-300 mb-2">Árbol Generado:</h2>
+                        <div class="bg-gray-700 border border-gray-600 rounded-lg p-3 shadow-md overflow-hidden">
+                            <img src="{{ url_for('static', filename=imagen) }}"
+                                 alt="Árbol de Análisis Sintáctico"
+                                 class="w-full h-auto rounded-lg transform transition duration-500 hover:scale-105 hover:shadow-xl"
+                            >
+                        </div>
+                    {% else %}
+                        <div class="bg-gray-700 p-4 text-gray-500 rounded-lg shadow-inner">
+                            <strong>Aún no hay árbol</strong>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: calculadora-glc
+    env: python
+    region: oregon
+    buildCommand: |
+      apt-get update && apt-get install -y graphviz
+      pip install -r requirements.txt
+    startCommand: gunicorn run:app --bind 0.0.0.0:$PORT
