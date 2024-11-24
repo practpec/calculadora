@@ -18,7 +18,7 @@
                 <div class="flex-1">
                     <form method="POST" action="/" class="flex flex-col space-y-4">
                         <!-- Campo de entrada con "MC" para memoria -->
-                        <div class="flex space-x-4">
+                        
                             <input
                                 type="text"
                                 name="expresion"
@@ -28,6 +28,9 @@
                                 required
                                 class="p-3 border border-gray-700 bg-gray-900 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-green-300 placeholder-gray-500 text-white w-full"
                             >
+                            
+                            
+                        <div class="flex space-x-4">
                             <!-- Botón de memoria MC -->
                             <button
                                 type="button"
@@ -38,14 +41,25 @@
                             >
                                 MC
                             </button>
+                            <!-- Botón de borrado por caracter -->
+                            <button
+                                type="button"
+                                onclick="borrarNumero()"
+                                class="bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+                            >
+                                Borrar Número
+                            </button>
+                            <!-- Botón de calcular -->
+                            <button
+                                type="submit"
+                                class="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 shadow-lg transition duration-300 ease-in-out transform hover:scale-105 w-full"
+                            >
+                                Calcular
+                            </button>
+                            
                         </div>
                         
-                        <button
-                            type="submit"
-                            class="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 shadow-lg transition duration-300 ease-in-out transform hover:scale-105 w-full"
-                        >
-                            Calcular
-                        </button>
+                       
                     </form>
 
                     <!-- Resultado de la expresión -->
@@ -55,16 +69,6 @@
                     </div>
                     {% endif %}
 
-                    <!-- Borrar último número -->
-                    <div class="mt-4">
-                        <button
-                            type="button"
-                            onclick="borrarNumero()"
-                            class="bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
-                        >
-                            Borrar Número
-                        </button>
-                    </div>
                     
                     <!-- Conteo de tokens -->
                     {% if total_numeros is not none and total_operadores is not none %}
